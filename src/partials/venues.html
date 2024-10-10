@@ -1,0 +1,73 @@
+<body class="bg-gray-100 p-5" x-data="scheduler()">
+    <div class="container mx-auto">
+        <!-- Cohort Form -->
+        <h1 class="text-2xl mb-4">Create Cohort</h1>
+        <form @submit.prevent="createCohort" class="mb-6">
+            <input type="text" x-model="newCohort.code" placeholder="Cohort Code" required class="mt-1 block w-full p-2 border border-gray-300 rounded">
+            <input type="number" x-model="newCohort.noOfStudents" placeholder="Number of Students" required class="mt-1 block w-full p-2 border border-gray-300 rounded">
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded">Create Cohort</button>
+        </form>
+
+        <!-- Schedule Form -->
+        <h1 class="text-2xl mb-4">Create Schedule</h1>
+        <form @submit.prevent="createSchedule">
+            <input type="text" x-model="newSchedule.title" placeholder="Title" required class="mt-1 block w-full p-2 border border-gray-300 rounded">
+            <input type="number" x-model="newSchedule.courseDurationInWeeks" placeholder="Duration (Weeks)" required class="mt-1 block w-full p-2 border border-gray-300 rounded">
+            <input type="time" x-model="newSchedule.startTime" required class="mt-1 block w-full p-2 border border-gray-300 rounded">
+            <input type="number" x-model="newSchedule.classDurationInHours" placeholder="Class Duration (Hours)" required class="mt-1 block w-full p-2 border border-gray-300 rounded">
+            <select x-model="newSchedule.dayInWeek" required class="mt-1 block w-full p-2 border border-gray-300 rounded">
+                <option value="">Select Day</option>
+                <template x-for="day in days" :key="day">
+                    <option :value="day" x-text="day"></option>
+                </template>
+            </select>
+            <select x-model="newSchedule.venueId" required class="mt-1 block w-full p-2 border border-gray-300 rounded">
+                <option value="">Select Venue</option>
+                <template x-for="venue in venues" :key="venue.id">
+                    <option :value="venue.id" x-text="venue.name"></option>
+                </template>
+            </select>
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded">Create Schedule</button>
+        </form>
+
+      <!-- Class Form -->
+<h1 class="text-2xl mb-4">Create Class</h1>
+<form @submit.prevent="createClass">
+    <select x-model="newClass.scheduleId" required class="mt-1 block w-full p-2 border border-gray-300 rounded">
+        <option value="">Select Schedule</option>
+        <template x-for="schedule in schedules" :key="schedule.id">
+            <option :value="schedule.id" x-text="schedule.title"></option>
+        </template>
+    </select>
+    <select x-model="newClass.venueId" required class="mt-1 block w-full p-2 border border-gray-300 rounded">
+        <option value="">Select Venue</option>
+        <template x-for="venue in venues" :key="venue.id">
+            <option :value="venue.id" x-text="venue.name"></option>
+        </template>
+    </select>
+    <button type="submit" class="bg-blue-500 text-white p-2 rounded">Create Class</button>
+</form>
+       
+       <!-- Display Classes -->
+       <h2 class="text-xl mt-8">Classes</h2>
+       <ul>
+           <template x-for="classItem in classes" :key="classItem.id">
+               <li class="flex justify-between items-center mt-2">
+                   <span x-text="classItem.title"></span>
+                   <button @click="deleteClass(classItem.id)" class="bg-red-500 text-white p-1 rounded">Delete</button>
+               </li>
+           </template>
+       </ul>
+<!-- Display Cohorts -->
+<h2 class="text-xl mt-8">Cohorts</h2>
+<ul>
+    <template x-for="cohort in cohorts" :key="cohort.id">
+        <li class="flex justify-between items-center mt-2">
+            <span x-text="cohort.code + ' - ' + cohort.no_of_students"></span>
+            <button @click="deleteCohort(cohort.id)" class="bg-red-500 text-white p-1 rounded">Delete</button>
+        </li>
+    </template>
+</ul>
+
+    </div>
+</body>

@@ -1,0 +1,141 @@
+<aside
+  :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'"
+  class="  absolute left-0 top-0 z-9999 h-screen w-64 flex-col overflow-y-hidden drop-shadow-1 bg-white ease-linear  dark:bg-boxdark lg:static lg:translate-x-0"
+  @click.outside="sidebarToggle = false"
+>
+
+
+  <!-- SIDEBAR HEADER -->
+  <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
+    <a href="index.html">
+      <img src="./images/logo/neocloudlogo.svg" alt="Logo"  />
+     
+    </a>
+  
+    <button
+      class="block lg:hidden"
+      @click.stop="sidebarToggle = !sidebarToggle"
+    >
+      <svg
+        class="fill-current"
+        width="20"
+        height="18"
+        viewBox="0 0 20 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 8.175H2.98748L9.36248 1.6875C9.69998 1.35 9.69998 0.825 9.36248 0.4875C9.02498 0.15 8.49998 0.15 8.16248 0.4875L0.399976 8.3625C0.0624756 8.7 0.0624756 9.225 0.399976 9.5625L8.16248 17.4375C8.31248 17.5875 8.53748 17.7 8.76248 17.7C8.98748 17.7 9.17498 17.625 9.36248 17.475C9.69998 17.1375 9.69998 16.6125 9.36248 16.275L3.02498 9.8625H19C19.45 9.8625 19.825 9.4875 19.825 9.0375C19.825 8.55 19.45 8.175 19 8.175Z"
+          fill=""
+        />
+      </svg>
+    
+    </button>
+ 
+  </div>
+  <!-- SIDEBAR HEADER -->
+
+  <div
+    class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear"
+  >
+    <!-- Sidebar Menu -->
+    <nav
+      class="mt-5 px-4 py-4 lg:mt-9 lg:px-6"
+      x-data="{selected: $persist('Dashboard')}"
+    >
+      <!-- Menu Group -->
+      <div>
+        <ul class="mb-6 flex flex-col gap-1.5">
+          <!-- Menu Item Dashboard -->
+          <li>
+            <a
+              class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium rounded-xl text-black duration-300 ease-in-out hover:bg-gray dark:hover:bg-meta-4"
+              href="index.html"
+              :class="{'bg-gray dark:bg-meta-4': (selected === 'Dashboard') || (page === 'ecommerce' || page === 'analytics' || page === 'stocks') }"
+            >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 10.75H5C2.58 10.75 1.25 9.42 1.25 7V5C1.25 2.58 2.58 1.25 5 1.25H7C9.42 1.25 10.75 2.58 10.75 5V7C10.75 9.42 9.42 10.75 7 10.75ZM5 2.75C3.42 2.75 2.75 3.42 2.75 5V7C2.75 8.58 3.42 9.25 5 9.25H7C8.58 9.25 9.25 8.58 9.25 7V5C9.25 3.42 8.58 2.75 7 2.75H5Z" fill="#787486"/>
+              <path d="M19 10.75H17C14.58 10.75 13.25 9.42 13.25 7V5C13.25 2.58 14.58 1.25 17 1.25H19C21.42 1.25 22.75 2.58 22.75 5V7C22.75 9.42 21.42 10.75 19 10.75ZM17 2.75C15.42 2.75 14.75 3.42 14.75 5V7C14.75 8.58 15.42 9.25 17 9.25H19C20.58 9.25 21.25 8.58 21.25 7V5C21.25 3.42 20.58 2.75 19 2.75H17Z" fill="#787486"/>
+              <path d="M19 22.75H17C14.58 22.75 13.25 21.42 13.25 19V17C13.25 14.58 14.58 13.25 17 13.25H19C21.42 13.25 22.75 14.58 22.75 17V19C22.75 21.42 21.42 22.75 19 22.75ZM17 14.75C15.42 14.75 14.75 15.42 14.75 17V19C14.75 20.58 15.42 21.25 17 21.25H19C20.58 21.25 21.25 20.58 21.25 19V17C21.25 15.42 20.58 14.75 19 14.75H17Z" fill="#787486"/>
+              <path d="M7 22.75H5C2.58 22.75 1.25 21.42 1.25 19V17C1.25 14.58 2.58 13.25 5 13.25H7C9.42 13.25 10.75 14.58 10.75 17V19C10.75 21.42 9.42 22.75 7 22.75ZM5 14.75C3.42 14.75 2.75 15.42 2.75 17V19C2.75 20.58 3.42 21.25 5 21.25H7C8.58 21.25 9.25 20.58 9.25 19V17C9.25 15.42 8.58 14.75 7 14.75H5Z" fill="#787486"/>
+              </svg>
+              
+
+              Dashboard
+            </a>
+          </li>
+          <!-- Menu Item Dashboard -->
+
+
+          <!-- Menu Item Cohorts -->
+          <li>
+            <a
+              class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium  rounded-xl text-black duration-300 ease-in-out hover:bg-gray dark:hover:bg-meta-4"
+              href="tables.html"
+              @click="selected = (selected === 'Tables' ? '':'Tables')"
+              :class="{ 'bg-gray dark:bg-meta-4': (selected === 'Tables') && (page === 'tables') }"
+            >
+            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.3701 9.38H17.6201" stroke="#787486" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6.37988 9.38L7.12988 10.13L9.37988 7.88" stroke="#787486" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12.3701 16.38H17.6201" stroke="#787486" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6.37988 16.38L7.12988 17.13L9.37988 14.88" stroke="#787486" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 22.5H15C20 22.5 22 20.5 22 15.5V9.5C22 4.5 20 2.5 15 2.5H9C4 2.5 2 4.5 2 9.5V15.5C2 20.5 4 22.5 9 22.5Z" stroke="#787486" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              
+
+            Cohorts
+            </a>
+          </li>
+          <!-- Menu Item Cohorts -->
+        
+
+          <!-- Menu Item Students -->
+          <li>
+            <a
+              class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium rounded-xl   text-black duration-300 ease-in-out hover:bg-gray dark:hover:bg-meta-4"
+              href="profile.html"
+              @click="selected = (selected === 'Profile' ? '':'Profile')"
+              :class="{ 'bg-gray dark:bg-meta-4': (selected === 'Profile') && (page === 'profile') }"
+              :class="page === 'profile' && 'bg-graydark'"
+            >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.16006 10.87C9.06006 10.86 8.94006 10.86 8.83006 10.87C6.45006 10.79 4.56006 8.84 4.56006 6.44C4.56006 3.99 6.54006 2 9.00006 2C11.4501 2 13.4401 3.99 13.4401 6.44C13.4301 8.84 11.5401 10.79 9.16006 10.87Z" stroke="#787486" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16.41 4C18.35 4 19.91 5.57 19.91 7.5C19.91 9.39 18.41 10.93 16.54 11C16.46 10.99 16.37 10.99 16.28 11" stroke="#787486" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4.15997 14.56C1.73997 16.18 1.73997 18.82 4.15997 20.43C6.90997 22.27 11.42 22.27 14.17 20.43C16.59 18.81 16.59 16.17 14.17 14.56C11.43 12.73 6.91997 12.73 4.15997 14.56Z" stroke="#787486" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18.3401 20C19.0601 19.85 19.7401 19.56 20.3001 19.13C21.8601 17.96 21.8601 16.03 20.3001 14.86C19.7501 14.44 19.0801 14.16 18.3701 14" stroke="#787486" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+
+              Students
+            </a>
+          </li>
+          <!-- Menu Item Students -->
+
+          
+  <!-- Menu Item Calendar -->
+  <li>
+    <a
+      class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium rounded-xl text-black duration-300 ease-in-out hover:bg-gray dark:hover:bg-meta-4"
+      href="calendar.html"
+      @click="selected = (selected === 'Calendar' ? '':'Calendar')"
+      :class="{ 'bg-gray dark:bg-meta-4': (selected === 'Calendar') && (page === 'calendar') }"
+    >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 2V5" stroke="#787486" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M16 2V5" stroke="#787486" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M3.5 9.09H20.5" stroke="#787486" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z" stroke="#787486" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M11.9955 13.7H12.0045" stroke="#787486" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M8.29431 13.7H8.30329" stroke="#787486" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M8.29431 16.7H8.30329" stroke="#787486" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      
+
+      Calendar
+    </a>
+  </li>
+  <!-- Menu Item Calendar -->
+       
+  </div>
+
+</aside>
